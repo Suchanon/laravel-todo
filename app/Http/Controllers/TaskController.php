@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
@@ -13,9 +14,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return  response()->json([
-            'data' => ['Learn routing', 'Build Task API'],
-        ]);
+        return TaskResource::collection(Task::all());
+        // return  response()->json([
+        //     'data' => ['Learn routing', 'Build Task API'],
+        // ]);
     }
 
     /**
@@ -26,16 +28,18 @@ class TaskController extends Controller
         // If we reach this line, input is already validated + authorized.
         $task = Task::create($request->validated()); // only validated keys — safe mass assign
 
-        return response()->json(['data' => $task], 201);
+        return (new TaskResource($task))
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
      * GET /api/tasks/{task} — show one task.
      * Note: {task} from the route is injected by name, auto-resolved by the container.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        return response()->json(['data' => "Task #{$id}"]);
+        return new TaskResource($task);
     }
 
     /**

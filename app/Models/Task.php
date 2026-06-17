@@ -24,6 +24,7 @@ class Task extends Model
     ];
 
     /**
+     * Type conversion
      * Attribute casting — the modern Laravel 11+ method form (not the old $casts property).
      *
      * @return array<string, string>
