@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -19,9 +21,12 @@ class TaskController extends Controller
     /**
      * POST /api/tasks — create a task.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        return response()->json(['received' => $request->all()], 201);
+        // If we reach this line, input is already validated + authorized.
+        $task = Task::create($request->validated()); // only validated keys — safe mass assign
+
+        return response()->json(['data' => $task], 201);
     }
 
     /**
