@@ -176,4 +176,4 @@ php artisan tinker --execute 'dd(app(App\Services\TaskService::class));'  # insp
 
 ---
 
-> **Next:** Phase 4 — Security & Testing (Guards/Interceptors + Jest → Middleware, Sanctum auth, Pest/PHPUnit). *(Not written yet.)*
+> **Next:** [Phase 4 — Security (Auth & Authorization)](phase-4-security.md)
