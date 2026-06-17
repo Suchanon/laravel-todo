@@ -6,7 +6,18 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git branch *)",
-      "Bash(php artisan *)"
+      "Bash(php artisan *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" https://todo.test/api/tasks)",
+      "Bash(curl -s https://todo.test/api/tasks)",
+      "Bash(curl -s https://todo.test/api/tasks/5)",
+      "Bash(curl -s -H \"Accept: application/json\" https://todo.test/api/ping)",
+      "mcp__laravel-boost__get-absolute-url",
+      "Bash(curl -s -w \"\\\\n[HTTP %{http_code}]\\\\n\" http://todo.test/api/tasks)",
+      "Bash(curl -s -w \"\\\\n[HTTP %{http_code}]\\\\n\" http://todo.test/api/tasks/5)",
+      "Bash(curl -s -w \"\\\\n[HTTP %{http_code}]\\\\n\" http://todo.test/api/ping)",
+      "Bash(curl -s -w \"\\\\n\" http://todo.test/api/ping)",
+      "Bash(curl -s -w \"\\\\n\" http://todo.test/api/colors)",
+      "Bash(curl -s -w \"\\\\n\" http://todo.test/api/ping-array)"
     ]
   }
 }
