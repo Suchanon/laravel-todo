@@ -6,15 +6,20 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskResource;
+use App\Services\TaskService;
 
 class TaskController extends Controller
 {
+    public function __construct(
+        private readonly TaskService $tasks,
+    ) {}
+
     /**
      * GET /api/tasks — list all tasks.
      */
     public function index()
     {
-        return TaskResource::collection(Task::all());
+        return TaskResource::collection($this->tasks->all());
         // return  response()->json([
         //     'data' => ['Learn routing', 'Build Task API'],
         // ]);
@@ -26,7 +31,7 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         // If we reach this line, input is already validated + authorized.
-        $task = Task::create($request->validated()); // only validated keys — safe mass assign
+        $task = $this->tasks->create($request->validated()); // only validated keys — safe mass assign
 
         return (new TaskResource($task))
             ->response()
@@ -45,16 +50,18 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Task $task)
     {
-        //
+        $updateResult = $this->tasks->toggleComplete($task);
+        return new TaskResource($updateResult);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task) // both route-bound Task AND injected service
     {
-        //
+        $this->tasks->delete($task);
+        return response()->noContent(); //204
     }
 }
