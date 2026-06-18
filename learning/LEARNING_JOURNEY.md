@@ -12,6 +12,6 @@
 | 2 | [Data Layer & Validation](phase-2-data-layer-validation.md) | Migrations, Eloquent, Form Requests, API Resources |
 | 3 | [Business Logic & DI](phase-3-business-logic-di.md) | Service classes, the Service Container, autowiring |
 | 4 | [Security (Auth & Authorization)](phase-4-security.md) | Middleware, Sanctum tokens, Policies, ownership scoping |
-| 5 | Testing *(not written yet)* | Pest/PHPUnit, feature tests, factories, mocking |
+| 5 | [Testing (Pest / PHPUnit)](phase-5-testing.md) | Feature tests, factories, `Sanctum::actingAs`, mocking, arch tests |
 
 Each phase file ends with a **Developer Log & Reference Notes** section: a NestJS↔Laravel syntax table, "Gotchas for TypeScript Devs", and a quick-reference command summary.

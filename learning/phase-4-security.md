@@ -246,4 +246,4 @@ php artisan migrate:fresh                         # reset + apply user_id schema
 
 ---
 
-> **Next:** Phase 5 — Testing (Jest → Pest/PHPUnit, feature tests, factories, mocking). *(Not written yet.)*
+> **Next:** [Phase 5 — Testing (Pest / PHPUnit)](phase-5-testing.md)
