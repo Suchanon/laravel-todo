@@ -43,16 +43,14 @@ class AuthController extends Controller
 
     public function register(Request $request): JsonResponse
     {
-        //validate 
         $validatedUser = $request->validate([
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'email', 'unique:users'],   // ← unique กันสมัครซ้ำ
             'password' => ['required', 'min:8'],
         ]);
-        $user = User::create($validatedUser);
-        //create user to db
 
-        //return access toekn?
+        $user = User::create($validatedUser);
+        
         $tokenName = 'bank-api-token-name';
         return response()->json([
             'token' => $user->createToken($tokenName)->plainTextToken
