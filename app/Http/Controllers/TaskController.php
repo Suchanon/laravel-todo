@@ -17,12 +17,9 @@ class TaskController extends Controller
     /**
      * GET /api/tasks — list all tasks.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return TaskResource::collection($this->tasks->all());
-        // return  response()->json([
-        //     'data' => ['Learn routing', 'Build Task API'],
-        // ]);
+        return TaskResource::collection($request->user()->tasks()->latest()->get());
     }
 
     /**
@@ -30,9 +27,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        // If we reach this line, input is already validated + authorized.
-        $task = $this->tasks->create($request->validated()); // only validated keys — safe mass assign
-
+        $task = $request->user()->tasks()->create($request->validated());
         return (new TaskResource($task))
             ->response()
             ->setStatusCode(201);
