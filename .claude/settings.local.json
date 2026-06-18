@@ -17,7 +17,8 @@
       "Bash(curl -s -w \"\\\\n[HTTP %{http_code}]\\\\n\" http://todo.test/api/ping)",
       "Bash(curl -s -w \"\\\\n\" http://todo.test/api/ping)",
       "Bash(curl -s -w \"\\\\n\" http://todo.test/api/colors)",
-      "Bash(curl -s -w \"\\\\n\" http://todo.test/api/ping-array)"
+      "Bash(curl -s -w \"\\\\n\" http://todo.test/api/ping-array)",
+      "mcp__laravel-boost__search-docs"
     ]
   }
 }
