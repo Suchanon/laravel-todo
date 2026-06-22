@@ -25,17 +25,17 @@ test('a user can create a task', function () {
     Sanctum::actingAs($user);
 
     $this->postJson('/api/tasks', [
-        'title' => 'Write tests'
+        'title' => 'Write tests',
     ])
         ->assertCreated()
         ->assertJsonPath('data.title', 'Write tests');
     $this->assertDatabaseHas('tasks', [
         'title' => 'Write tests',
-        'user_id' => $user->id  // ownership was set correctly
+        'user_id' => $user->id,  // ownership was set correctly
     ]);
 });
 
-test('creating a task requires a title', function(){
+test('creating a task requires a title', function () {
     $user = User::factory()->Create();
     Sanctum::actingAs($user);
 
@@ -44,8 +44,19 @@ test('creating a task requires a title', function(){
         ->assertJsonValidationErrors('title');
 });
 
-//NOTE DRY
+// NOTE DRY
 // beforeEach(function () {
 //     $this->user = User::factory()->create();
 // });
-//group test by using describe('authenticated' / 'unauthenticated')
+// group test by using describe('authenticated' / 'unauthenticated')
+
+test('a user cannot view another users task', function () {
+    $owner = User::factory()->create();
+    $task = Task::factory()->for($owner)->create();
+
+    $intruder = User::factory()->create();
+    Sanctum::actingAs($intruder);
+
+    $this->getJson("/api/tasks/{$task->id}")
+        ->assertForbidden();
+});

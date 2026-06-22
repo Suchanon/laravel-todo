@@ -6,6 +6,12 @@
                 "artisan",
                 "boost:mcp"
             ]
+        },
+        "my-php-mcp-server": {
+            "command": "/Users/alex_m3/Library/Application Support/Herd/bin/php",
+            "args": [
+                "/Users/alex_m3/Herd/todo/php-mcp-server/server.php"
+            ]
         }
     }
 }

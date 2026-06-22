@@ -1,0 +1,14 @@
+{
+    "name": "alex-m3/php-mcp-server",
+    "description": "PHP MCP Server using official SDK",
+    "type": "project",
+    "require": {
+        "php": ">=8.4",
+        "mcp/sdk": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
